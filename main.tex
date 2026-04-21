@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX outputDirectory = .output
+% !TeX root = main.tex
+
+\documentclass[sigconf]{Templates/ACM Conference Proceedings Primary Article Template/acmart}
+
+% === Conference metadata (update for your submission) ===
+\copyrightyear{2026}
+\acmYear{2026}
+\setcopyright{cc}
+\setcctype{by}
+% \acmConference[Conf '26]{Conference Name}{Month DD--DD, 2026}{City, Country}
+% \acmBooktitle{Conference Name (Conf '26), Month DD--DD, 2026, City, Country}
+% \acmPrice{}
+% \acmDOI{10.1145/XXXXXXX.XXXXXXX}
+% \acmISBN{979-8-XXXX-XXXX-X/26/XX}
+
+\usepackage{Packages/myart}
+\usepackage{caption}
+\setlength{\abovecaptionskip}{1ex}
+\setlength{\belowcaptionskip}{1ex}
+\setlength{\floatsep}{1ex}
+\setlength{\textfloatsep}{1ex}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Allow flexible line breaks in a bibliography
+\emergencystretch=1em
+\sloppy
+
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+\input{Packages/packages.tex}
+
+\begin{document}
+
+% === Title ===
+\title{Your Paper Title Here}
+
+% === Abstract ===
+\input{Sections/abstract}
+
+% === Authors ===
+% \author{First Author}
+% \affiliation{%
+%   \institution{Institution}
+%   \city{City}
+%   \state{State}
+%   \country{Country}
+% }
+% \email{first.author@institution.com}
+
+% === Keywords ===
+% \keywords{keyword1, keyword2, keyword3}
+
+\maketitle
+
+\input{Sections/sections}
+
+% === Acknowledgments ===
+% \begin{acks}
+% Acknowledgments go here.
+% \end{acks}
+
+% === Bibliography ===
+\newpage
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{softwares,references}
+
+% === Appendix / Revisions ===
+% \newpage
+% \clearpage
+% \input{Revisions/revisions}
+
+\end{document}

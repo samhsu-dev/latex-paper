@@ -1,0 +1,40 @@
+% Packages/codes.tex
+% Purpose: Code listing configurations, syntax highlighting, and code-related macros.
+
+\usepackage{listings, xcolor, courier, cprotect}
+
+% Custom colors
+\definecolor{keywordcolor}{RGB}{136, 0, 136} % Purple
+\definecolor{classnamecolor}{RGB}{0, 0, 255} % Blue
+\definecolor{commentcolor}{RGB}{0, 128, 0}   % Green
+\definecolor{stringcolor}{RGB}{163, 21, 21}  % Dark red
+\definecolor{linenocolor}{RGB}{128, 128, 128} % Gray
+
+% Configure listing style
+\lstset{
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{keywordcolor}\bfseries,
+  commentstyle=\color{commentcolor},
+  stringstyle=\color{stringcolor},
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{linenocolor},
+  numbersep=5pt,
+  xleftmargin=2em,
+  framexleftmargin=1.5em,
+  breaklines=true,
+  captionpos=b,
+  showstringspaces=false,
+  tabsize=4,
+  backgroundcolor=\color[gray]{0.95},
+  stepnumber=1,
+  firstnumber=1,
+}
+
+\renewcommand{\lstlistingname}{Code Snippet}
+
+% Inline code macro — change language as needed
+% Usage: \code{your_code_here}
+\newcommand{\code}[1]{%
+\lstinline[keywordstyle=\color{black}, stringstyle=\color{black}]|#1|%
+}

@@ -1,0 +1,43 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-synctex=1",
+        "-output-directory=.output",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "bibtex",
+      "command": "sh",
+      "args": [
+        "-c",
+        "cd .output && BIBINPUTS=..: BSTINPUTS=..: bibtex main"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pdflatex -> bibtex -> pdflatex*2",
+      "tools": [
+        "pdflatex",
+        "bibtex",
+        "pdflatex",
+        "pdflatex"
+      ]
+    }
+  ],
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.outDir": ".output",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.ref.viewer": "tabOrBrowser",
+  "latex-workshop.linting.chktex.enabled": false,
+  "latex-workshop.linting.lacheck.enabled": false,
+  "latex-workshop.latex.build.forceRecipeUsage": false,
+  "latex-workshop.message.error.show": true,
+  "latex-workshop.message.warning.show": false
+}

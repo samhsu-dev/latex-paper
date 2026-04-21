@@ -1,0 +1,20 @@
+% Packages/packages.tex
+% Purpose: Main package loader - includes all specialized package files
+% This file should only contain package includes, not individual package definitions
+
+% Core packages that are used across multiple specialized files
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{makecell}
+\usepackage{subcaption} 
+\usepackage{xurl}
+\urlstyle{same}
+
+% Include specialized package files
+\input{Packages/codes}
+\input{Packages/formats}
+\input{Packages/revision}
+
+% Include cobra specific terms and definitions
+\input{Packages/__cobra}

@@ -1,0 +1,98 @@
+% Packages/revision.tex
+% Purpose: Revision/highlight macros and environments, review boxes, and table/caption coloring for revision markup.
+% Self-contained: Only includes packages actually used in this file.
+
+\usepackage{xcolor}         % Color support for text and tables
+\usepackage{colortbl}       % Table rule coloring
+\usepackage[table]{xcolor}  % Table cell coloring
+\usepackage{caption}        % Caption formatting
+\usepackage[normalem]{ulem} % Strikethrough (\sout)
+\usepackage{xparse}         % Advanced command definitions
+\usepackage{tcolorbox}      % Custom review boxes
+\usepackage{ifthen}         % Conditional logic for \ifthenelse
+
+\newtcolorbox{reviewcommentboxplain}{
+  colback=gray!6,
+  colframe=black!20,
+  boxrule=0.4pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=4pt,
+  bottom=4pt,
+  width=\linewidth,
+  before skip=8pt,
+  after skip=8pt
+}
+
+% \review[状态]{标题}{内容}，状态可省略，默认todo
+\newcommand{\review}[3][todo]{%
+  \begin{reviewcommentboxplain}
+    % \ifthenelse{\equal{#1}{done}}{\textcolor{blue}{[DONE]}~}{\textcolor{red}{[TODO]}~}%
+    %\textbf{#2:} #3
+    #3
+  \end{reviewcommentboxplain}
+}
+
+% \reviewlist[状态]{标题}{item内容}，状态可省略，默认todo
+\newcommand{\reviewlist}[3][todo]{%
+  \begin{reviewcommentboxplain}
+    \ifthenelse{\equal{#1}{done}}{\textcolor{blue}{[DONE]}~}{\textcolor{red}{[TODO]}~}%
+    \textbf{#2:}
+    \begin{itemize}
+      #3
+    \end{itemize}
+  \end{reviewcommentboxplain}
+}
+
+% \revision has two forms:
+%   \revision{new}            → blue insertion
+%   \revision{old}{new}       → gray strike-out of old + blue insertion
+%   \revision{}{new}          → old is empty, so acts like insertion
+\NewDocumentCommand{\revision}{m g}{%
+  #1 = old text (may be empty), #2 = new text (optional)
+  \IfNoValueTF{#2}% only one argument ≡ insertion
+    {\textcolor{blue}{#1}}%
+    {%
+      \if\relax\detokenize{#1}\relax
+           \textcolor{blue}{#2}% old text empty
+      \else
+           \textcolor{gray}{\sout{#1}}\textcolor{blue}{#2}% replace
+      \fi
+    }%
+}
+
+% #1 = [author] (optional), #2 = new text, #3 = old text
+\NewDocumentCommand{\changedBy}{o m g}{%
+  % #1 = author (optional), #2 = new, #3 = old (optional)
+  \IfNoValueTF{#3}% 如果没有 old → 插入
+    {\IfNoValueTF{#1}%
+        {\textcolor{green!60!black}{#2}}% 无作者
+        {\textcolor{green!60!black}{#2}\textsuperscript{[#1]}}% 有作者
+    }%
+    {% old 存在 → 替换或删除
+     \if\relax\detokenize{#3}\relax
+       \IfNoValueTF{#1}%
+         {\textcolor{green!60!black}{#2}}% old 为空
+         {\textcolor{green!60!black}{#2}\textsuperscript{[#1]}}
+     \else
+       \textcolor{gray}{\sout{#3}}%
+       \textcolor{green!60!black}{#2}%
+       \IfNoValueTF{#1}{}{%
+         \textsuperscript{[#1]}%
+       }
+     \fi
+    }%
+}
+
+% \revision environment for multi-paragraph content, tables, figures, etc.
+% Usage: \begin{revisionenv} ... \end{revisionenv}
+\newenvironment{revisionenv}{
+%   \color{blue}
+%   \arrayrulecolor{blue}
+%   \captionsetup{labelfont={color=blue},textfont={color=blue}}
+%   \AddToHook{env/tabular/begin}{\color{blue}\arrayrulecolor{blue}}%
+}{
+%   \RemoveFromHook{env/tabular/begin}{\color{blue}\arrayrulecolor{blue}}%
+%   \arrayrulecolor{black} 
+}

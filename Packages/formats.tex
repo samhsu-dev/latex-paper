@@ -1,0 +1,68 @@
+% Packages/formats.tex
+% Purpose: General macros, string handling, references, and formatting for the paper.
+% Self-contained: Only includes packages actually used in this file.
+
+\usepackage{amsmath}      % Math support
+\usepackage{xspace}       % Smart spaces after macros
+\usepackage{xparse}       % Advanced command definitions
+\usepackage{hyperref}     % Hyperlinks
+\usepackage{csquotes}     % Quotation support
+\usepackage{xstring}      % String manipulation
+\usepackage{soul}         % Highlighting, underlining
+\usepackage{ifthen}       % Conditional logic
+\usepackage{textcomp}     % Extra symbols
+\usepackage[T1]{fontenc}  % Font encoding
+
+\newcommand{\astType}[1]{\textnormal{\detokenize{#1}}}
+
+\NewDocumentCommand{\refline}{m m}{\hyperref[#1]{\textcolor{black}{L#2}}}
+
+
+\NewDocumentCommand{\trarrow}{o}{%
+    \IfValueTF{#1} % 如果提供了参数
+    {%
+        \IfEqCase{#1}{%
+            {normal}{$\rightarrow$}% 默认箭头
+            {bold}{$\Rightarrow$}% 加粗箭头
+            {long}{$\longrightarrow$}% 长箭头
+            {double}{$\Rightarrow\Rightarrow$}% 双箭头
+            {dash}{$\dashrightarrow$}% 破折箭头
+        }[\textbf{Error: Unknown option}] % 处理无效输入
+    }
+    {$\rightarrow$} % 没有参数时的默认值
+}
+
+\NewDocumentCommand{\tlarrow}{o}{%
+    \IfValueTF{#1} % 如果提供了参数
+    {%
+        \IfEqCase{#1}{%
+            {normal}{$\leftarrow$}% 默认箭头
+            {bold}{$\Leftarrow$}% 加粗箭头
+            {long}{$\longleftarrow$}% 长箭头
+            {double}{$\Leftarrow\Leftarrow$}% 双箭头
+            {dash}{$\dashleftarrow$}% 破折箭头
+        }[\textbf{Error: Unknown option}] % 处理无效输入
+    }
+    {$\leftarrow$} % 没有参数时的默认值
+}
+
+\newcommand{\textem}[1]{\emph{#1}}
+
+\newcommand{\para}[1]{\vspace{2pt}\noindent{\textbf{#1}}\hspace{10pt}\vspace{0.1pt}}
+
+\newenvironment{icompact}{
+  \begin{list}{$\bullet$}{
+    \itemindent -.05em
+    \parsep 0pt
+    \partopsep 0pt
+    \topsep 0pt
+    \itemsep 0pt
+    \parskip 0pt
+    \leftmargin 0.13in
+    \widowpenalty=0
+    \clubpenalty=0
+    \displaywidowpenalty=0
+    \brokenpenalty=0}
+}
+{\normalsize\end{list}}
+

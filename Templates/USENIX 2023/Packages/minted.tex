@@ -1,0 +1,35 @@
+\usepackage{listings, xcolor, courier, cprotect}
+
+\definecolor{dkgreen}{rgb}{0,.6,0}
+\definecolor{dkblue}{rgb}{0,0,.6}
+\definecolor{dkyellow}{cmyk}{0,0,.8,.3}
+
+% Define a custom PHP language
+\lstdefinelanguage{myPHP}{
+  language=PHP,                % Base it on PHP
+  morekeywords={new,include},  % Explicitly add missing keywords
+  sensitive=true,              % Make keywords case-sensitive
+  literate=
+    {\\\$}{{\$}}1              % Render \$ as $ in blue
+    {\\\_}{{\_}}1,             % Render _ as _
+}
+
+\lstset{
+  language=myPHP,          % Use the custom PHP language
+  basicstyle=\bfseries\small\ttfamily, % Bold, small size, monospaced font
+  keywordstyle=\color{blue},   % Keywords like 'new' and 'include' in dark blue
+  identifierstyle=\color{dkgreen!70}, % Variable names in light green
+  stringstyle=\color{red!70!black}, % Strings in dark red
+  commentstyle=\color{green!60}, % Comments in green
+  frame=single,                % Add a single frame around the code block
+  numbers=left,                % Show line numbers on the left
+  numberstyle=\color{cyan},    % Line numbers in cyan
+  breaklines=true,             % Enable automatic line breaking
+  showstringspaces=false,      % Do not show spaces in strings
+  tabsize=4,                   % Set the size of tabs
+  backgroundcolor=\color{white}, % Set the background color to white
+  morekeywords={eval},         % Treat 'eval' as a keyword for styling
+  keywordstyle=[2]\color{brown}, % Function names in brown
+  classoffset=2                % Enable second keyword class for function names
+}
+
