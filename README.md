@@ -2,7 +2,7 @@
 
 > Structured LaTeX skeleton for academic papers — start writing, not configuring.
 
-ACM CCS 2026 paper template with modular section layout, reusable package configs, and revision markup support.
+ACM [CCS 2026](https://www.sigsac.org/ccs/CCS2026/) paper template with modular section layout, reusable package configs, and revision markup support.
 
 ## Install
 
@@ -28,7 +28,7 @@ Or open `main.tex` in [VS Code + LaTeX Workshop](https://marketplace.visualstudi
 ## Structure
 
 ```
-main.tex                  # Entry point (ACM sigconf, CCS 2026)
+main.tex                  # Entry point (ACM sigconf, CCS 2026 — Nov 15–19, The Hague)
 references.bib            # Bibliography entries
 softwares.bib             # Software/tool bibliography entries
 Sections/
